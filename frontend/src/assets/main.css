@@ -1,0 +1,49 @@
+@import "./base.css";
+@import "./colors.css";
+@import "./timing.css";
+
+#app {
+  --padding-inline-main-grid: 1rem;
+  --width-max-main-grid-content: 60rem;
+
+  display: grid;
+  grid-template-columns:
+    [full-width-start breakout-left-start] minmax(var(--padding-inline-main-grid, 1fr))
+    [breakout-left-end content-start]
+    min(100% - 2 * var(--padding-inline-main-grid), var(--width-max-main-grid-content))
+    [breakout-right-start content-end]
+    minmax(var(--padding-inline-main-grid, 1fr))
+    [full-width-end breakout-right-end];
+  margin: 0 auto;
+  padding: 2rem;
+  font-weight: normal;
+
+  > * {
+    grid-column: breakout-left-start / breakout-right-end;
+  }
+}
+
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+  padding: 3px;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+
+  #app {
+    padding: 0 2rem;
+  }
+}

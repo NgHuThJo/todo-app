@@ -1,0 +1,35 @@
+:root {
+  --blue: oklch(61.344% 0.20542 262.224);
+  --background-image-canvas-primary: oklch(83.742% 0.12405 217.841) to
+    oklch(65.549% 0.23148 312.661);
+
+  /* Light theme */
+  --gray-50: lch(98.27% 0.01 296.81);
+  --purple-300: oklch(85.445% 0.0376 280.527);
+  --gray-300: oklch(86.844% 0.0111 280.374);
+  --gray-600: oklch(67.13% 0.02503 282.995);
+  --navy-850: oklch(42.33% 0.05163 279.67);
+
+  /* Dark theme */
+  --navy-950: oklch(20.896% 0.02184 280.284);
+  --navy-900: oklch(28.089% 0.03873 279.402);
+  --purple-300: oklch(85.445% 0.0376 280.527);
+  --purple-100: oklch(92.465% 0.01632 282.197);
+  --purple-600: oklch(49.556% 0.05121 280.183);
+  --purple-700: oklch(43.728% 0.03646 278.704);
+  --purple-800: oklch(35.505% 0.03119 282.188);
+  --gray-600: oklch(67.13% 0.02503 282.995);
+
+  --color-background-canvas-primary: var(--navy-950);
+  --color-text-primary: var(--gray-50);
+}
+
+.light {
+  --color-background-canvas-primary: var(--gray-50);
+  --color-text-primary: var(--gray-950);
+}
+
+.dark {
+  --color-background-canvas-primary: var(--navy-950);
+  --color-text-primary: var(--gray-50);
+}
