@@ -1,6 +1,7 @@
-def main():
-    print("Hello from backend!")
 
+from fastapi import FastAPI
 
-if __name__ == "__main__":
-    main()
+from features.tasks import tasks_router
+
+app = FastAPI()
+app.include_router(tasks_router)
