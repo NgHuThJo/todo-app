@@ -1,25 +1,26 @@
 @import "./base.css";
 @import "./colors.css";
-@import "./timing.css";
+@import "./animation.css";
+@import "./typography.css";
 
 #app {
-  --padding-inline-main-grid: 1rem;
-  --width-max-main-grid-content: 60rem;
+  --padding-inline-main-grid: 1.5rem;
+  --width-max-main-grid-content: 40rem;
 
   display: grid;
   grid-template-columns:
-    [full-width-start breakout-left-start] minmax(var(--padding-inline-main-grid, 1fr))
+    [full-width-start breakout-left-start] minmax(var(--padding-inline-main-grid), 1fr)
     [breakout-left-end content-start]
-    min(100% - 2 * var(--padding-inline-main-grid), var(--width-max-main-grid-content))
+    min(calc(100% - 2 * var(--padding-inline-main-grid)), var(--width-max-main-grid-content))
     [breakout-right-start content-end]
-    minmax(var(--padding-inline-main-grid, 1fr))
+    minmax(var(--padding-inline-main-grid), 1fr)
     [full-width-end breakout-right-end];
   margin: 0 auto;
-  padding: 2rem;
+  padding-block: 2rem;
   font-weight: normal;
 
   > * {
-    grid-column: breakout-left-start / breakout-right-end;
+    grid-column: content-start / content-end;
   }
 }
 
@@ -37,7 +38,7 @@ a,
   }
 }
 
-@media (min-width: 1024px) {
+/* @media (min-width: 1024px) {
   body {
     display: flex;
     place-items: center;
@@ -46,4 +47,4 @@ a,
   #app {
     padding: 0 2rem;
   }
-}
+} */

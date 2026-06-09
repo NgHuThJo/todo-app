@@ -1,0 +1,37 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "compounds": [
+    {
+      "name": "Debug Python + JavaScript Fullstack",
+      "configurations": ["Vite Dev (Debug)", "FastAPI (Debug)"],
+      "stopAll": true,
+      "preLaunchTask": "start dev servers"
+    }
+  ],
+  "configurations": [
+    {
+      "name": "Vite Dev (Debug)",
+      "type": "chrome",
+      "request": "launch",
+      "postDebugTask": "terminate dev servers",
+      "url": "http://localhost:5173",
+      // Used for sourcemap resolution
+      "webRoot": "${workspaceFolder}/frontend"
+    },
+    {
+      "name": "FastAPI (Debug)",
+      // VS Code runs a debug client + debugpy debug adapter
+      "type": "debugpy",
+      // VS Code client connects to an already running debugpy server
+      "request": "attach",
+      // Host and port of the debugpy server running inside your Python process
+      "connect": {
+        "host": "localhost",
+        "port": 5678
+      }
+    }
+  ]
+}

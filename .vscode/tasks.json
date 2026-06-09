@@ -1,0 +1,131 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "start fastapi dev server",
+      "command": "uv run python -m debugpy --listen 5678 --configure-subProcess true -m fastapi dev",
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}/backend"
+      },
+      // Tell the IDE that this task runs in the background
+      // Required for long-running tasks such as dev servers
+      "isBackground": true,
+      "problemMatcher": {
+        // Problem matchers are normally used to parse compiler
+        // errors and warnings from terminal output
+        // Here we only need a valid matcher because VS Code
+        // requires one in order to use background task tracking
+        "pattern": [
+          {
+            // Match every line in the terminal output
+            "regexp": ".*",
+            // Required fields for a valid problem matcher
+            // The numbers would normally refer to capture groups in the regexp
+            // but they are not actually used here
+            "file": 1,
+            "location": 2,
+            "message": 3
+          }
+        ],
+        // Defines when the background task has completed
+        // startup and is ready to accept requests
+        "background": {
+          // Note: the background matcher tracks state transitions:
+          // inactive -> active -> ready
+          // Set this option to consider the task active immediately
+          // as soon as the process starts
+          "activeOnStart": true,
+          // Startup has begun
+          // inactive -> active
+          "beginsPattern": "Starting development server",
+          // Startup has completed
+          // active -> ready
+          "endsPattern": "Application startup complete"
+        }
+      }
+      //   "presentation": {
+      //     "echo": true,
+      //     "reveal": "always",
+      //     "focus": false,
+      //     "panel": "shared",
+      //     "showReuseMessage": true,
+      //     "clear": false,
+      //     "close": true
+      //   }
+    },
+    {
+      "label": "start vite dev server",
+      "type": "npm",
+      "script": "dev",
+      "dependsOn": "fastapi dev server",
+      "isBackground": true,
+      "options": {
+        "cwd": "${workspaceFolder}/frontend"
+      },
+      "problemMatcher": {
+        "pattern": [
+          {
+            "regexp": ".*",
+            "file": 1,
+            "location": 2,
+            "message": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          // Double slash is used to escape \ in JSON string
+          "beginsPattern": "VITE v\\d+\\.\\d+\\.\\d+",
+          "endsPattern": "Local:.*https?://localhost:5173"
+        }
+      }
+    },
+    {
+      "label": "start dev servers",
+      "dependsOn": ["start fastapi dev server", "start vite dev server"],
+      "dependsOrder": "sequence"
+    },
+    {
+      "label": "terminate dev servers",
+      "dependsOn": [
+        "terminate vite dev server",
+        "terminate fastapi dev server"
+      ],
+      "dependsOrder": "parallel"
+    },
+    {
+      "label": "terminate vite dev server",
+      "type": "shell",
+      // echo or any other command is necessary for some reason
+      "command": "echo ${input:terminate-vite-dev-server}",
+      "presentation": {
+        "reveal": "always",
+        "close": true
+      }
+    },
+    {
+      "label": "terminate fastapi dev server",
+      "type": "shell",
+      // echo or any other command is necessary for some reason
+      "command": "echo ${input:terminate-fastapi-dev-server}",
+      "presentation": {
+        "reveal": "always",
+        "close": true
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "terminate-vite-dev-server",
+      "type": "command",
+      "command": "workbench.action.tasks.terminate",
+      "args": "start vite dev server"
+    },
+    {
+      "id": "terminate-fastapi-dev-server",
+      "type": "command",
+      "command": "workbench.action.tasks.terminate",
+      "args": "start fastapi dev server"
+    }
+  ]
+}

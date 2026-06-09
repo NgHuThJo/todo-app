@@ -6,5 +6,10 @@
 
 :root {
   --font-family-content: "Josefin Sans", ui-sans-serif, system-ui;
+
+  --font-weight-content: 400;
+  --font-weight-heading: 700;
+
   --font-size-content: 1.125rem;
+  --font-size-heading: 3rem;
 }

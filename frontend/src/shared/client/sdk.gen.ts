@@ -2,7 +2,7 @@
 
 import type { Client, Options as Options2, RequestResult, TDataShape } from './client';
 import { client } from './client.gen';
-import type { CreateTaskTasksPostData, CreateTaskTasksPostErrors, CreateTaskTasksPostResponses } from './types.gen';
+import type { CreateTaskData, CreateTaskErrors, CreateTaskResponses, DeleteAllCompletedTasksData, DeleteAllCompletedTasksResponses, DeleteTaskData, DeleteTaskErrors, DeleteTaskResponses, GetAllTasksData, GetAllTasksResponses, UpdateTaskData, UpdateTaskErrors, UpdateTaskResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean, TResponse = unknown> = Options2<TData, ThrowOnError, TResponse> & {
     /**
@@ -19,10 +19,37 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
 };
 
 /**
+ * Delete All Completed Tasks
+ */
+export const deleteAllCompletedTasks = <ThrowOnError extends boolean = false>(options?: Options<DeleteAllCompletedTasksData, ThrowOnError>): RequestResult<DeleteAllCompletedTasksResponses, unknown, ThrowOnError> => (options?.client ?? client).delete<DeleteAllCompletedTasksResponses, unknown, ThrowOnError>({ url: '/tasks/', ...options });
+
+/**
+ * Get All Tasks
+ */
+export const getAllTasks = <ThrowOnError extends boolean = false>(options?: Options<GetAllTasksData, ThrowOnError>): RequestResult<GetAllTasksResponses, unknown, ThrowOnError> => (options?.client ?? client).get<GetAllTasksResponses, unknown, ThrowOnError>({ url: '/tasks/', ...options });
+
+/**
  * Create Task
  */
-export const createTaskTasksPost = <ThrowOnError extends boolean = false>(options: Options<CreateTaskTasksPostData, ThrowOnError>): RequestResult<CreateTaskTasksPostResponses, CreateTaskTasksPostErrors, ThrowOnError> => (options.client ?? client).post<CreateTaskTasksPostResponses, CreateTaskTasksPostErrors, ThrowOnError>({
+export const createTask = <ThrowOnError extends boolean = false>(options: Options<CreateTaskData, ThrowOnError>): RequestResult<CreateTaskResponses, CreateTaskErrors, ThrowOnError> => (options.client ?? client).post<CreateTaskResponses, CreateTaskErrors, ThrowOnError>({
     url: '/tasks/',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Delete Task
+ */
+export const deleteTask = <ThrowOnError extends boolean = false>(options: Options<DeleteTaskData, ThrowOnError>): RequestResult<DeleteTaskResponses, DeleteTaskErrors, ThrowOnError> => (options.client ?? client).delete<DeleteTaskResponses, DeleteTaskErrors, ThrowOnError>({ url: '/tasks/{task_id}', ...options });
+
+/**
+ * Update Task
+ */
+export const updateTask = <ThrowOnError extends boolean = false>(options: Options<UpdateTaskData, ThrowOnError>): RequestResult<UpdateTaskResponses, UpdateTaskErrors, ThrowOnError> => (options.client ?? client).put<UpdateTaskResponses, UpdateTaskErrors, ThrowOnError>({
+    url: '/tasks/{task_id}',
     ...options,
     headers: {
         'Content-Type': 'application/json',

@@ -22,10 +22,12 @@
     "npm": "^11.16.0",
     "pinia": "^3.0.4",
     "vue": "^3.5.32",
-    "vue-router": "^5.0.4"
+    "vue-router": "^5.0.4",
+    "vue3-toastify": "^0.2.9"
   },
   "devDependencies": {
     "@hey-api/openapi-ts": "0.98.1",
+    "@hey-api/vite-plugin": "0.3.1",
     "@playwright/test": "^1.59.1",
     "@tsconfig/node24": "^24.0.4",
     "@types/jsdom": "^28.0.1",

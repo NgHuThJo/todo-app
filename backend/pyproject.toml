@@ -9,10 +9,12 @@ dependencies = [
     "asyncpg>=0.31.0",
     "fastapi[standard]>=0.136.3",
     "sqlalchemy>=2.0.50",
+    "structlog>=26.1.0",
 ]
 
 [dependency-groups]
 dev = [
+    "debugpy>=1.8.21",
     "mypy>=2.1.0",
     "pytest>=9.0.3",
     "ruff>=0.15.15",

@@ -37,6 +37,24 @@ export type CreateTaskResponse = {
 };
 
 /**
+ * GetAllTasksResponse
+ */
+export type GetAllTasksResponse = {
+    /**
+     * Id
+     */
+    id: number;
+    /**
+     * Is Checked
+     */
+    is_checked: boolean;
+    /**
+     * Task
+     */
+    task: string;
+};
+
+/**
  * HTTPValidationError
  */
 export type HttpValidationError = {
@@ -44,6 +62,20 @@ export type HttpValidationError = {
      * Detail
      */
     detail?: Array<ValidationError>;
+};
+
+/**
+ * UpdateTaskRequest
+ */
+export type UpdateTaskRequest = {
+    /**
+     * Is Checked
+     */
+    is_checked: boolean;
+    /**
+     * Task
+     */
+    task: string;
 };
 
 /**
@@ -74,27 +106,121 @@ export type ValidationError = {
     };
 };
 
-export type CreateTaskTasksPostData = {
+export type DeleteAllCompletedTasksData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/tasks/';
+};
+
+export type DeleteAllCompletedTasksResponses = {
+    /**
+     * Successful Response
+     */
+    204: void;
+};
+
+export type DeleteAllCompletedTasksResponse = DeleteAllCompletedTasksResponses[keyof DeleteAllCompletedTasksResponses];
+
+export type GetAllTasksData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/tasks/';
+};
+
+export type GetAllTasksResponses = {
+    /**
+     * Response Get All Tasks Tasks  Get
+     *
+     * Successful Response
+     */
+    200: Array<GetAllTasksResponse>;
+};
+
+export type GetAllTasksResponse2 = GetAllTasksResponses[keyof GetAllTasksResponses];
+
+export type CreateTaskData = {
     body: CreateTaskRequest;
     path?: never;
     query?: never;
     url: '/tasks/';
 };
 
-export type CreateTaskTasksPostErrors = {
+export type CreateTaskErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type CreateTaskTasksPostError = CreateTaskTasksPostErrors[keyof CreateTaskTasksPostErrors];
+export type CreateTaskError = CreateTaskErrors[keyof CreateTaskErrors];
 
-export type CreateTaskTasksPostResponses = {
+export type CreateTaskResponses = {
     /**
      * Successful Response
      */
     200: CreateTaskResponse;
 };
 
-export type CreateTaskTasksPostResponse = CreateTaskTasksPostResponses[keyof CreateTaskTasksPostResponses];
+export type CreateTaskResponse2 = CreateTaskResponses[keyof CreateTaskResponses];
+
+export type DeleteTaskData = {
+    body?: never;
+    path: {
+        /**
+         * Task Id
+         */
+        task_id: number;
+    };
+    query?: never;
+    url: '/tasks/{task_id}';
+};
+
+export type DeleteTaskErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type DeleteTaskError = DeleteTaskErrors[keyof DeleteTaskErrors];
+
+export type DeleteTaskResponses = {
+    /**
+     * Successful Response
+     */
+    204: void;
+};
+
+export type DeleteTaskResponse = DeleteTaskResponses[keyof DeleteTaskResponses];
+
+export type UpdateTaskData = {
+    body: UpdateTaskRequest;
+    path: {
+        /**
+         * Task Id
+         */
+        task_id: number;
+    };
+    query?: never;
+    url: '/tasks/{task_id}';
+};
+
+export type UpdateTaskErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type UpdateTaskError = UpdateTaskErrors[keyof UpdateTaskErrors];
+
+export type UpdateTaskResponses = {
+    /**
+     * Successful Response
+     */
+    204: void;
+};
+
+export type UpdateTaskResponse = UpdateTaskResponses[keyof UpdateTaskResponses];

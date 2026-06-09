@@ -1,7 +1,19 @@
+@property --gradient-from {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: transparent;
+}
+
+@property --gradient-to {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: transparent;
+}
+
 :root {
   --blue: oklch(61.344% 0.20542 262.224);
-  --background-image-canvas-primary: oklch(83.742% 0.12405 217.841) to
-    oklch(65.549% 0.23148 312.661);
+  --color-gradient-from: oklch(83.742% 0.12405 217.841);
+  --color-gradient-to: oklch(65.549% 0.23148 312.661);
 
   /* Light theme */
   --gray-50: lch(98.27% 0.01 296.81);
@@ -21,15 +33,22 @@
   --gray-600: oklch(67.13% 0.02503 282.995);
 
   --color-background-canvas-primary: var(--navy-950);
+  --color-background-surface-primary: var(--navy-900);
   --color-text-primary: var(--gray-50);
+  --color-status-disabled: var(--gray-600);
+  --color-background-form-control-primary: var(--gray-50);
+  --color-status-active: var(--blue);
 }
 
 .light {
-  --color-background-canvas-primary: var(--gray-50);
+  --color-background-canvas-primary: var(--purple-300);
+  --color-background-surface-primary: var(--gray-50);
   --color-text-primary: var(--gray-950);
 }
 
 .dark {
   --color-background-canvas-primary: var(--navy-950);
+  --color-background-surface-primary: var(--navy-900);
   --color-text-primary: var(--gray-50);
+  --color-border-primary: var(--gray-600);
 }

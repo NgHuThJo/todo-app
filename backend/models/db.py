@@ -9,8 +9,10 @@ AsyncSessionLocal = async_sessionmaker(
     bind=engine, class_=AsyncSession, expire_on_commit=False
 )
 
+
 async def get_db():
     async with AsyncSessionLocal() as session:
         yield session
+
 
 DbSession = Annotated[AsyncSession, Depends(get_db)]

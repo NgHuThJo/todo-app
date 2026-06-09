@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch, watchEffect } from "vue";
+import { computed, ref, watchEffect } from "vue";
 import Button from "@/primitives/Button.vue";
 import sunIcon from "./assets/images/icon-sun.svg";
 import moonIcon from "./assets/images/icon-moon.svg";
@@ -7,7 +7,7 @@ import darkBackgroundDesktop from "./assets/images/bg-desktop-dark.jpg";
 import lightBackgroundDesktop from "./assets/images/bg-desktop-light.jpg";
 import darkBackgroundMobile from "./assets/images/bg-mobile-dark.jpg";
 import lightBackgroundMobile from "./assets/images/bg-mobile-light.jpg";
-import { RouterLink, RouterView } from "vue-router";
+import { RouterView } from "vue-router";
 import { useMediaQuery } from "@/composables/media-query";
 
 type Theme = "light" | "dark";
@@ -63,6 +63,11 @@ header {
   gap: 1rem;
   line-height: 1.5;
   max-height: 100vh;
+}
+
+h1 {
+  font-size: var(--font-size-heading);
+  letter-spacing: 0.5rem;
 }
 
 .logo {
